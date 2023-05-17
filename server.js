@@ -1,9 +1,11 @@
 import * as fs from 'fs';
 // dotenv alternative
-fs.readFileSync('./.env', 'utf8').split(/[\r\n]+/).forEach((_eachEnv) => {
-  const parts = _eachEnv.split('=');
-  process.env[parts[0]] = parts[1];
-});
+if (fs.existsSync('./.env')) {
+  fs.readFileSync('./.env', 'utf8').split(/[\r\n]+/).forEach((_eachEnv) => {
+    const parts = _eachEnv.split('=');
+    process.env[parts[0]] = parts[1];
+  });
+}
 
 import * as path from 'path';
 import express from 'express';
