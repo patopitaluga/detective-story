@@ -1,0 +1,16 @@
+[
+  { "place": "Un bar", "chance": 14 },
+  { "place": "La terraza de un rascacielos", "chance": 14 },
+  { "place": "Los techos de las casas", "chance": 16 },
+  { "place": "Una fiesta de gala", "chance": 14 },
+  { "place": "Los bolos", "chance": 14 },
+  { "place": "Un club de boxeo", "chance": 14 },
+  { "place": "Un club de strip tease", "chance": 14 },
+  { "place": "Un acuario", "chance": 14 },
+  { "place": "La riña de gallos", "chance": 14 },
+  { "place": "Un callejón", "chance": 14 },
+  { "place": "Un tren", "chance": 14 },
+  { "place": "La estación de tren", "chance": 14 },
+  { "place": "El cementerio", "chance": 14 },
+  { "place": "Un galpón abandonado", "chance": 14 }
+]

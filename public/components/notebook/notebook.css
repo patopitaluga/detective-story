@@ -1,0 +1,29 @@
+.notebook {
+  background-image: url('../../images/notebook-bg.png');
+  background-color: rgba(200, 266, 100, 1);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: 0 9px;
+  box-sizing: border-box;
+  font-size: 14px;
+  height: 100vh;
+  padding: 55px 25px 100px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notebook div {
+  height: 100%;
+  margin: 0;
+  overflow: auto;
+  width: 100%;
+  flex: 1 1 auto;
+}
+
+@media (min-width: 768px) {
+  .notebook {
+    max-width: 400px;
+  }
+}

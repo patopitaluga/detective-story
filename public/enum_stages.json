@@ -1,0 +1,15 @@
+{
+  "LOADING_ASSETS": "soundeffects",
+  "INTRO": "intro",
+  "WELCOME": "welcome",
+  "CHARACTER_CREATION": "character_creation",
+  "CHARACTER_CREATION2": "character_creation2",
+  "CHARACTER_CREATION3": "character_creation3",
+  "MISSION_BRIEFING": "mission_briefing",
+  "GAME_LOOP": "game_loop",
+  "GAME_LOOP_WITNESS": "game_loop_witness",
+  "GAME_LOOP_CSI": "game_loop_csi",
+  "GAME_LOOP_CHOOSE_DESTINATION": "game_loop_choose_destination",
+  "FAILED": "failed",
+  "COMPLETE": "complete"
+}

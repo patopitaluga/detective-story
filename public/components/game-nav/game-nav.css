@@ -1,0 +1,33 @@
+.game-nav {
+  display: flex;
+  height: 56px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .game-nav {
+    display: none;
+  }
+}
+
+.game-nav__button {
+  cursor: pointer;
+  flex: 1 1 auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 0;
+  border-right: 1px #666 solid;
+}
+.game-nav__button.game-nav__button--chat {
+  background-image: url('../../images/regular-mobile.svg');
+  background-size: 20px;
+}
+.game-nav__button.game-nav__button--notebook {
+  background-image: url('../../images/regular-book.svg');
+  background-size: 22px;
+}
+.game-nav__button.game-nav__button--travel {
+  background-image: url('../../images/regular-globe.svg');
+  border-right: 0;
+  background-size: 24px;
+}

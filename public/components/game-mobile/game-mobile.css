@@ -1,0 +1,122 @@
+.game-mobile {
+  background-color: #99ba92;
+  background-image: url('/chat-bg-pattern-light.ee148af944f6580293ae.png');
+  background-size: cover;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+@media (min-width: 768px) {
+  .game-mobile {
+    max-width: 400px;
+  }
+}
+
+
+.game-mobile__header {
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 2px 2px rgba(114, 114, 114, .168627);
+  display: flex;
+  flex: 0 0 auto;
+  height: 56px;
+  width: 100%;
+}
+
+.game-mobile__avatar {
+  background: purple;
+  border-radius: 50%;
+  height: 40px;
+  margin-left: 55px;
+  width: 40px;
+}
+
+.game-mobile__history {
+  overflow: auto;
+  padding: 13px 13px 13px 8px;
+  flex: 1 1 auto;
+}
+
+.game-mobile__message {
+  background: #fff;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 1px 2px rgba(114, 114, 114, .25098);
+  padding: 6px 9px 7px;
+}
+
+.game-mobile__user-input {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 auto;
+  font-size: 16px;
+  padding: 8px;
+  width: 100%;
+}
+
+.game-mobile__user-input__input-cont {
+  background: #fff;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 14px;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0 16px;
+}
+
+.game-mobile__user-input__input-cont input {
+  border: 0;
+  outline: none;
+  width: 100%;
+}
+
+.game-mobile__user-input button {
+  background-color: #fff;
+  background-image: url('../../images/regular-paper-plane.svg?r=1');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 18px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  flex: 0 0 auto;
+  height: 46px;
+  margin-left: 8px;
+  margin-right: 0;
+  width: 46px;
+}
+
+.game-mobile__option {
+  background-color: rgba(0, 0, 0, .2);
+  border: 0;
+  border-radius: 12px;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  width: 100%;
+}
+
+.game-mobile__option.game-mobile__option--disabled {
+  background-color: rgba(255, 255, 255, .5);
+  cursor: default;
+}

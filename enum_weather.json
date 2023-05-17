@@ -1,0 +1,9 @@
+[
+  { "weather": "una noche oscura", "chance": 14 },
+  { "weather": "una noche estrellada", "chance": 14 },
+  { "weather": "una noche de luna llena", "chance": 16 },
+  { "weather": "un día tormentoso", "chance": 14 },
+  { "weather": "un día de mucha niebla", "chance": 14 },
+  { "weather": "un día muy frío", "chance": 14 },
+  { "weather": "un día humedo con mucho calor", "chance": 14 }
+]

@@ -1,0 +1,264 @@
+{
+  "comment": "Respuesta al prompt: ¿Cuáles son los 30 países más famosos del mundo?",
+  "countries": [
+    { "es": "Estados Unidos", "en": "United States",
+      "items": [
+        "la estatua de la libertad",
+        "el puente golden gate",
+        "la estatua de Abraham Lincoln"
+      ],
+      "cityEs": "New York",
+      "clues": [
+        "la bandera tiene los colores rojo, blanco y azul"
+      ]
+    },
+    { "es": "Canadá", "en": "Canada",
+      "items": [
+        "un castor",
+        "un sombrero de policía montada",
+        "un alce"
+      ],
+      "cityEs": "Toronto",
+      "clues": [
+        "la bandera tiene los colores rojo y blanco"
+      ]
+    },
+    { "es": "Italia", "en": "Italy",
+      "items": [
+        "el Coliseo Romano",
+        "la Torre de Pisa",
+        "un plato de pastas",
+        "el sombrero del Papa Francisco"
+      ],
+      "cityEs": "Roma",
+      "clues": [
+        "la bandera tiene los colores verde, blanco y rojo"
+      ]
+    },
+    { "es": "España", "en": "Spain",
+      "items": [
+        "la Sagrada Familia",
+        "la Alhambra",
+        "la Catedral de Santiago de Compostela"
+      ],
+      "cityEs": "Madrid",
+      "clues": [
+        "la bandera tiene los colores rojo y amarillo"
+      ]
+    },
+    { "es": "Corea del Sur", "en": "South Korea",
+      "items": [
+        "la Torre N de Seúl",
+        "el Palacio Gyeongbokgung",
+        "el Templo de Bulguksa"
+      ],
+      "cityEs": "Seúl",
+      "clues": [
+        "la bandera tiene los colores blanco, rojo y azul"
+      ]
+    },
+    { "es": "Australia", "en": "Australia",
+      "items": [
+        "la Ópera de Sydney",
+        "la Isla de Tasmania",
+        "el Gran Arrecife de Coral"
+      ],
+      "cityEs": "Sidney",
+      "clues": [
+        "la bandera tiene los colores azul, rojo y blanco"
+      ]
+    },
+    { "es": "Indonesia", "en": "Indonesia",
+      "items": [
+        "Borobudur",
+        "el Templo de Prambanan",
+        "la Estatua de la Libertad de Yakarta"
+      ],
+      "cityEs": "Yakarta",
+      "clues": [
+        "la bandera tiene los colores rojo y blanco"
+      ]
+    },
+    { "es": "Argentina", "en": "Argentina",
+      "items": [
+        "el Obelisco",
+        "el sombrero de Carlos Gardel",
+        "la copa del Pato de SCV",
+        "la Copa del Mundial"
+      ],
+      "cityEs": "Buenos Aires",
+      "clues": [
+        "la bandera tiene los colores celeste y blanco"
+      ]
+    },
+    { "es": "Turquía", "en": "Turkey",
+      "items": [
+        "la Mezquita Azul",
+        "la Basílica de Santa Sofía",
+        "el Palacio de Topkapi"
+      ],
+      "cityEs": "Estambul",
+      "clues": [
+        "la bandera tiene los colores rojo y blanco"
+      ]
+    },
+    { "es": "Sudáfrica", "en": "South Africa",
+      "items": [
+        "la Montaña de la Mesa",
+        "el Parque Nacional Kruger",
+        "el Robben Island"
+      ],
+      "cityEs": "Johannesburgo",
+      "clues": [
+        "la bandera tiene los colores rojo, azul, verde, negro, amarillo y blanco"
+      ]
+    },
+    { "es": "Egipto", "en": "Egypt",
+      "items": [
+        "las Pirámides de Giza",
+        "el Templo de Karnak",
+        "el Valle de los Reyes"
+      ],
+      "cityEs": "El Cairo",
+      "clues": [
+        "la bandera tiene los colores rojo, blanco y negro"
+      ]
+    },
+    { "es": "Arabia Saudita", "en": "Saudi Arabia",
+      "items": [
+        "la Mezquita Masjid al-Haram",
+        "la Mezquita Masjid an-Nabawi",
+        "la Meca"
+      ],
+      "cityEs": "Ar-Riyadh",
+      "clues": [
+        "la bandera tiene los colores verde y blanco"
+      ]
+    },
+    { "es": "Irán", "en": "Iran",
+      "items": [
+        "la Mezquita del Imán Reza",
+        "la Torre Azadi",
+        "la Ciudadela de Bam"
+      ],
+      "cityEs": "Teheran",
+      "clues": [
+        "la bandera tiene los colores rojo, blanco y verde"
+      ]
+    },
+    { "es": "Nigeria", "en": "Nigeria",
+      "items": [
+        "la Catedral de Santa Ana",
+        "la Mezquita Nacional de Abuja",
+        "la Torre del Globo de Lagos"
+      ],
+      "cityEs": "Lagos",
+      "clues": [
+        "la bandera tiene los colores verde y blanco"
+      ]
+    },
+    { "es": "Países Bajos", "en": "Netherlands",
+      "items": [
+        "un coffeeshop",
+        "una bicicleta"
+      ],
+      "cityEs": "Amsterdam",
+      "clues": [
+        "la bandera tiene los colores rojo, blanco y azul"
+      ]
+    },
+    { "es": "China", "en": "China",
+      "items": [
+        "un soldado del ejercito de terracota"
+      ],
+      "cityEs": "Beijing",
+      "clues": [
+        "la bandera tiene los colores rojo y amarillo"
+      ]
+    },
+    { "es": "India", "en": "India",
+      "items": [
+        "una miniatura del Taj Mahal"
+      ],
+      "cityEs": "Delhi",
+      "clues": [
+        "la bandera tiene los colores naranja, blanco y verde"
+      ]
+    },
+    { "es": "Rusia", "en": "Russia",
+      "items": [
+        "una cúpula de la Plaza Roja",
+        "una estatua de Lenin"
+      ],
+      "cityEs": "Moscú",
+      "clues": [
+        "la bandera tiene los colores blanco, azul y rojo"
+      ]
+    },
+    { "es": "Japón", "en": "Japan",
+      "items": [
+        "muñeco de Pikachu",
+        "muñeco de Goku"
+      ],
+      "cityEs": "Tokio",
+      "clues": [
+        "la bandera tiene el color blanco con un círculo rojo en el centro"
+      ]
+    },
+    { "es": "Alemania", "en": "Germany",
+      "items": [
+        "una jarra de cerveza",
+        "un lederhosen"
+      ],
+      "cityEs": "Berlín",
+      "clues": [
+        "la bandera tiene los colores negro, rojo y dorado"
+      ]
+    },
+    { "es": "Reino Unido", "en": "United Kingdom",
+      "items": [
+        "el London Eye"
+      ],
+      "cityEs": "Londres",
+      "clues": [
+        "la bandera tiene los colores rojo, blanco y azul"
+      ]
+    },
+    { "es": "Francia", "en": "France",
+      "items": [
+        "la Torre Eiffel",
+        "un croissant",
+        "una boina negra",
+        "un mimo",
+        "la Gioconda"
+      ],
+      "cityEs": "París",
+      "clues": [
+        "la bandera tiene los colores azul, blanco y rojo"
+      ]
+    },
+    { "es": "Brasil", "en": "Brazil",
+      "items": [
+        "el Maracaná",
+        "el carnaval",
+        "el Cristo Redentor"
+      ],
+      "cityEs": "San Pablo",
+      "clues": [
+        "la bandera tiene los colores verde, amarillo, azul y blanco"
+      ]
+    },
+    { "es": "México", "en": "Mexico",
+      "items": [
+        "un taco",
+        "el bigote de Pancho Villa",
+        "un mural de Diego Rivera",
+        "la pirámide de Chichén Itzá"
+      ],
+      "cityEs": "México DF",
+      "clues": [
+        "la bandera tiene los colores verde, blanco y rojo"
+      ]
+    }
+  ]
+}

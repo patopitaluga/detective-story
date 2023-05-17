@@ -1,0 +1,9 @@
+[
+  { "author": "Edgar Allan Poe", "chance": 14 },
+  { "author": "Arthur Conan Doyle", "chance": 14 },
+  { "author": "Raymond Chandler", "chance": 16 },
+  { "author": "Stieg Larsson", "chance": 14 },
+  { "author": "William Gibson", "chance": 14 },
+  { "author": "Agatha Christie", "chance": 14 },
+  { "author": "Jorge Luis Borges", "chance": 14 }
+]

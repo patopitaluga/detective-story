@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es-es">
+<head>
+  <meta charset="utf-8">
+  <title>Detective Story - Juego narrativo con ChatGPT</title>
+
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, viewport-fit=cover">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    .screens-container {
+      width: 300vw;
+      position: relative;
+    }
+    .screens-container__pan {
+      display: flex;
+      position: absolute;
+      transition: left .3s ease-in-out;
+      webkit-font-smoothing: antialiased;
+      transform: translate3d(0, 0, 0);
+    }
+    .screens-container__pan--1 {
+      left: 0;
+    }
+    .screens-container__pan--2 {
+      left: -100vw;
+    }
+    .screens-container__pan--3 {
+      left: -200vw;
+    }
+    @media (min-width: 768px) {
+      .screens-container {
+        width: 100%;
+      }
+      .screens-container__pan--2 {
+        left: 0;
+      }
+      .screens-container__pan--3 {
+        left: 0;
+      }
+    }
+
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: local('Roboto'), local('Roboto-Regular'), url('https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      font-display: block;
+      src: local('Roboto Medium'), local('Roboto-Medium'), url('https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fBBc4.woff2') format('woff2');
+    }
+
+    [v-cloak] {
+      display: none !important
+    }
+    /* Hide Vue while loading */
+  </style>
+</head>
+<body>
+
+<div id="app-container-element">
+  <intro
+    v-if="store.gameStage === stages.INTRO"
+    @start="store.setGameStage(stages.WELCOME)"
+  >
+  </intro>
+  <div v-else>
+    <game-nav @changenav="mtdChangeMobileNav">
+    </game-nav>
+    <div class="screens-container">
+      <div
+        :class="{
+          'screens-container__pan': true,
+          'screens-container__pan--1': refNavPosition === 1,
+          'screens-container__pan--2': refNavPosition === 2,
+          'screens-container__pan--3': refNavPosition === 3,
+        }">
+        <game-mobile>
+        </game-mobile>
+        <notebook>
+        </notebook>
+        <illustration>
+        </illustration>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/vue@3.3.1"></script>
+
+<link rel="stylesheet" href="./components/intro/intro.css">
+<link rel="stylesheet" href="./components/game-nav/game-nav.css">
+<link rel="stylesheet" href="./components/game-mobile/game-mobile.css">
+<link rel="stylesheet" href="./components/notebook/notebook.css">
+<link rel="stylesheet" href="./components/illustration/illustration.css">
+
+<script type="module">
+  import stages from './enum_stages.json' assert { type: 'json' };
+
+  import { store } from './store.mjs';
+
+  import { intro } from './components/intro/intro.mjs';
+  import { gameNavComponent } from './components/game-nav/game-nav.mjs';
+  import { gameMobileComponent } from './components/game-mobile/game-mobile.mjs';
+  import { notebookComponent } from './components/notebook/notebook.mjs';
+  import { illustrationComponent } from './components/illustration/illustration.mjs';
+
+  const myApp = Vue.createApp({
+    setup: function() {
+      const refNavPosition = Vue.ref(1);
+      const mtdChangeMobileNav = (_) => {
+        refNavPosition.value = _;
+      };
+
+      return {
+        store,
+        stages,
+        refNavPosition,
+        mtdChangeMobileNav,
+      };
+    },
+  });
+  myApp.directive('focus', {
+    mounted(el) {
+      el.focus();
+    }
+  });
+  myApp.component('intro', intro);
+  myApp.component('game-nav', gameNavComponent);
+  myApp.component('game-mobile', gameMobileComponent);
+  myApp.component('notebook', notebookComponent);
+  myApp.component('illustration', illustrationComponent);
+  myApp.mount('#app-container-element');
+</script>
+</body>
+</html>
