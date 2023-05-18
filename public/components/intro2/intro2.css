@@ -1,0 +1,35 @@
+.intro2 {
+  align-items: center;
+  /* background: rgb(13,1,11);
+  background: linear-gradient(90deg, rgba(13,1,11,1) 0%, rgba(1,5,14,1) 100%); */
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.intro2__image {
+  background-image: url('../../detective-story-2.jpg');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100%;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+.intro2__image div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+}
+.intro2__image div button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

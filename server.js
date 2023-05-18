@@ -63,9 +63,9 @@ app.post('/text-gen', async (req, res) => {
     });
 });
 
-app.post('/image-gen', async (req, res) => {
+app.post('/image-gen', (req, res) => {
   if (!req.body.type) return res.status(400).send('Missing "type" POST variable in /image-gen endpoint.');
-  if (!['arrive', 'interrogation'].includes(req.body.type)) return res.status(400).send('"type" POST variable in /image-gen should be: "arrive", "interrogation".');
+  if (!['initial', 'arrive', 'interrogation'].includes(req.body.type)) return res.status(400).send('"type" POST variable in /image-gen should be: "initial", "arrive" or "interrogation".');
   if (!req.body.illustrationStyle) return res.status(400).send('Missing "illustrationStyle" POST variable in /image-gen endpoint.');
 
   const imageGenParams = {
@@ -79,8 +79,14 @@ app.post('/image-gen', async (req, res) => {
       break;
   }
 
-  const imageUrl = await myGameInstance.imageGen(imageGenParams);
-  res.send({ imageUrl });
+  myGameInstance.imageGen(imageGenParams)
+    .then((imageUrl) => {
+      res.send({ imageUrl });
+    })
+    .catch((err) => {
+      console.log('Error getting image from OpenAI');
+      res.status(500).send({ imageUrl: '' });
+    });
 });
 
 const port = process.env.PORT || 3333;

@@ -109,21 +109,42 @@ export class DetectiveStoryGameInterface {
   /**
    *
    * @param {object} options -
+   * @param {string} options.type - Required
    * @returns {Promise<string>}
    */
   imageGen(options) {
     return new Promise((resolve, reject) => {
+      if (!options?.type) throw new Error('[DetectiveStoryGameInterface.imageGen] missing "type" param.');
       if (!options?.illustrationStyle) throw new Error('[DetectiveStoryGameInterface.imageGen] missing "illustrationStyle" param.');
-      if (!options?.countryEn) throw new Error('[DetectiveStoryGameInterface.imageGen] missing "countryEn" param.');
 
-      const prompt = `In ${options.illustrationStyle} style, generate an image of a stereotypical american detective in ${options.countryEn}. The background should include a typical scene in ${options.country}. If that country have a recognizable place or monument it should be visible.`;
+      let prompt;
+      switch (options.type) {
+        case 'initial':
+          const posiblePrompts = [
+            `In ${options.illustrationStyle} style, generate an image of a stereotypical american detective the hall of the FBI headquarters.`,
+            `In ${options.illustrationStyle} style, generate an image of a stereotypical american detective in front of the FBI building.`,
+            `In ${options.illustrationStyle} style, generate an image of a stereotypical american detective getting a coffee from a vending machine.`,
+            `In ${options.illustrationStyle} style, generate an image of a stereotypical american detective talking to a coworker in front of a water dispenser in an office.`,
+          ];
+          prompt = posiblePrompts[Math.floor(Math.random() * posiblePrompts.length)];
+          break;
+        case 'arrive':
+          if (!options?.countryEn) throw new Error('[DetectiveStoryGameInterface.imageGen] missing "countryEn" param.');
+          prompt = `In ${options.illustrationStyle} style, generate an image of a stereotypical american detective in ${options.countryEn}. The background should include a typical scene in ${options.countryEn}. If that country have a recognizable place or monument it should be visible.`;
+          break;
+      }
+      if (!prompt) throw new Error('[DetectiveStoryGameInterface.imageGen] Can\'t generate prompt with current params.');
+
       if (this.log) console.log(`Image generation. Prompt: ${prompt}`);
       openai.createImage({
         prompt,
         n: 1, // how many images
         size: '512x512', // Available: ['256x256', '512x512', '1024x1024']
       })
-        .then((_) => resolve(_.data.data[0].url));
+        .then((_) => resolve(_.data.data[0].url))
+        .catch((err) => {
+          reject(err);
+        });
     });
   }
 };

@@ -7,6 +7,9 @@ const illustrationComponent = {
     v-if="store.illustrationUrl"
     :src="store.illustrationUrl"
   />
+
+  <div class="lds-dual-ring">
+  </div>
 </div>
 `,
   setup: function() {

@@ -102,6 +102,7 @@ const gameMobileComponent = {
      * Triggered when the user writes
      */
     const mtdSendMessage = () => {
+      if (refInputValue.value.length === 0) return;
       store.setAgentName(refInputValue.value);
       store.setGameStage(stages.CHARACTER_CREATION);
       refInputValue.value = '';

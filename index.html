@@ -24,6 +24,7 @@
       transition: left .3s ease-in-out;
       webkit-font-smoothing: antialiased;
       transform: translate3d(0, 0, 0);
+      min-width: 100%;
     }
     .screens-container__pan--1 {
       left: 0;
@@ -72,9 +73,14 @@
 <div id="app-container-element">
   <intro
     v-if="store.gameStage === stages.INTRO"
-    @start="store.setGameStage(stages.WELCOME)"
+    @start="store.setGameStage(stages.INTRO2)"
   >
   </intro>
+  <intro2
+    v-if="store.gameStage === stages.INTRO2"
+    @start="store.setGameStage(stages.WELCOME)"
+  >
+  </intro2>
   <div v-else>
     <game-nav @changenav="mtdChangeMobileNav">
     </game-nav>
@@ -100,17 +106,19 @@
 <script src="https://unpkg.com/vue@3.3.1"></script>
 
 <link rel="stylesheet" href="./components/intro/intro.css">
+<link rel="stylesheet" href="./components/intro2/intro2.css">
 <link rel="stylesheet" href="./components/game-nav/game-nav.css">
 <link rel="stylesheet" href="./components/game-mobile/game-mobile.css">
 <link rel="stylesheet" href="./components/notebook/notebook.css">
 <link rel="stylesheet" href="./components/illustration/illustration.css">
 
 <script type="module">
-  import stages from './enum_stages.json' assert { type: 'json' };
-
   import { store } from './store.mjs';
 
+  import stages from './enum_stages.json' assert { type: 'json' };
+
   import { intro } from './components/intro/intro.mjs';
+  import { intro2 } from './components/intro2/intro2.mjs';
   import { gameNavComponent } from './components/game-nav/game-nav.mjs';
   import { gameMobileComponent } from './components/game-mobile/game-mobile.mjs';
   import { notebookComponent } from './components/notebook/notebook.mjs';
@@ -137,11 +145,13 @@
     }
   });
   myApp.component('intro', intro);
+  myApp.component('intro2', intro2);
   myApp.component('game-nav', gameNavComponent);
   myApp.component('game-mobile', gameMobileComponent);
   myApp.component('notebook', notebookComponent);
   myApp.component('illustration', illustrationComponent);
   myApp.mount('#app-container-element');
+  store.initialize();
 </script>
 </body>
 </html>
