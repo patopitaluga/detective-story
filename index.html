@@ -30,13 +30,14 @@
       overflow: hidden;
     }
     .screens-container {
-      height: 100vh;
-      height: -webkit-fill-available;
-      width: 300vw;
+      flex: 1 1 auto;
+      height: 100%;
       position: relative;
+      width: 300vw;
     }
     .screens-container__pan {
       flex: 1 1 auto;
+      height: 100%;
       display: flex;
       position: absolute;
       transition: left .3s ease-in-out;
