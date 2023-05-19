@@ -23,6 +23,7 @@ export const store = Vue.reactive({
   skillPoints: 24,
   agentDexterity: 6,
   agentPersuasion: 6,
+  agentObservation: 6,
   agentAiming: 6,
   missionHours: 48,
   notepadText: '',
@@ -54,15 +55,6 @@ export const store = Vue.reactive({
 
   initialize: () => {
     // cache start text
-    store.queryTextGen({
-      type: 'arrive',
-      countryEs: initialCountry.es,
-      cityEs: initialCountry.cityEs,
-    })
-      .then((_) => store.setCountriesArriveDisplay(0, {
-        countryEs: initialCountry.es,
-        text: _,
-      }));
     store.generateIllustration({
       type: 'initial',
       illustrationStyle,
@@ -85,6 +77,19 @@ export const store = Vue.reactive({
   },
   setGameStage: (_) => {
     store.gameStage = _;
+    if (_ === stages.CHARACTER_CREATION) {
+      // cache
+      store.queryTextGen({
+        type: 'arrive',
+        countryEs: initialCountry.es,
+        cityEs: initialCountry.cityEs,
+        detectiveName: store.agentName,
+      })
+        .then((_) => store.setCountriesArriveDisplay(0, {
+          countryEs: initialCountry.es,
+          text: _,
+        }));
+    }
     if (_ === stages.GAME_LOOP_INITIAL_COUNTRY) {
       store.notepadText = 'Escribiendo…';
       setTimeout(() => {
@@ -112,6 +117,15 @@ export const store = Vue.reactive({
         .then((_) => store.notepadText = _);
       store.witnessTestimonies++;
     }
+    if (_ === stages.GAME_LOOP_CSI) {
+      store.notepadText = 'Investigando…';
+      store.queryTextGen({
+        type: 'investigation',
+        detectiveName: store.agentName,
+      })
+        .then((_) => store.notepadText = _);
+      store.witnessTestimonies++;
+    }
   },
   setAgentName: (_) => {
     store.agentName = _;
@@ -123,7 +137,7 @@ export const store = Vue.reactive({
     store.setGameStage(stages.CHARACTER_CREATION2);
   },
   setObservation: (_) => {
-    store.Observation = _;
+    store.agentObservation = _;
     store.skillPoints -= _;
     store.setGameStage(stages.CHARACTER_CREATION3);
   },
@@ -142,6 +156,13 @@ export const store = Vue.reactive({
       ...store.countriesArriveDisplay[i],
       ..._,
     };
+    // If it's already in this stage then the player was faster than openai
+    if (store.gameStage === stages.GAME_LOOP_INITIAL_COUNTRY) {
+      store.notepadText = 'Escribiendo…';
+      setTimeout(() => {
+        store.notepadText = store.countriesArriveDisplay[store.rightTravels].text;
+      }, 2500);
+    }
   },
 
   subtractMissionHours: (_) => {
@@ -158,7 +179,7 @@ export const store = Vue.reactive({
       if (typeof options !== 'object') throw new Error('[queryTextGen] "options" param should be an object.');
       if (typeof options.type === 'undefined') throw new Error('[queryTextGen] missing "options.type" param.');
       if (typeof options.type !== 'string') throw new Error('[queryTextGen] "options.type" param should be a string.');
-      if (!['arrive', 'interrogation'].includes(options.type)) throw new Error('[queryTextGen] "options.type" param should be: "arrive", "interrogation".');
+      if (!['arrive', 'interrogation', 'investigation'].includes(options.type)) throw new Error('[queryTextGen] "options.type" param should be: "arrive", "investigation", "interrogation".');
 
       const queryParams = {
         authorStyle: store.authorStyle,
@@ -167,17 +188,23 @@ export const store = Vue.reactive({
       switch (options.type) {
         case 'arrive':
           if (typeof options.countryEs === 'undefined' || !options.countryEs) throw new Error('[queryTextGen] missing "options.countryEs" param.');
+          if (typeof options.detectiveName === 'undefined' || !options.detectiveName) throw new Error('[queryTextGen] missing "options.detectiveName" param.');
           queryParams.countryEs = options.countryEs;
           queryParams.cityEs = options.cityEs;
+          queryParams.detectiveName = options.detectiveName;
           queryParams.thiefName = store.thiefName;
           queryParams.lootName = store.lootName;
           break;
         case 'interrogation':
           if (typeof options.witnessName === 'undefined' || !options.witnessName) throw new Error('[queryTextGen] missing "options.witnessName" param.');
           if (typeof options.witnessQuirk === 'undefined' || !options.witnessQuirk) throw new Error('[queryTextGen] missing "options.witnessQuirk" param.');
+          if (typeof options.clue === 'undefined' || !options.clue) throw new Error('[queryTextGen] missing "options.clue" param.');
           queryParams.witnessName = options.witnessName;
           queryParams.witnessQuirk = options.witnessQuirk;
           queryParams.clue = options.clue;
+          break;
+        case 'investigation':
+          if (typeof options.detectiveName === 'undefined' || !options.detectiveName) throw new Error('[queryTextGen] missing "options.detectiveName" param.');
           break;
       }
 

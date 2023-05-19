@@ -54,7 +54,7 @@ app.get('/logs', (req, res) => {
 
 app.post('/text-gen', async (req, res) => {
   if (!req.body.type) return res.status(400).send('Missing "type" POST variable in /text-gent endpoint.');
-  if (!['arrive', 'interrogation'].includes(req.body.type)) return res.status(400).send('"type" POST variable in /text-gent should be: "arrive", "interrogation".');
+  if (!['arrive', 'interrogation', 'investigation'].includes(req.body.type)) return res.status(400).send('"type" POST variable in /text-gent should be: "arrive", "interrogation" "investigation".');
 
   const textGenParams = {
     type: req.body.type,
@@ -62,12 +62,14 @@ app.post('/text-gen', async (req, res) => {
   };
   switch (req.body.type) {
     case 'arrive':
-      if (!req.body.countryEs) return res.status(400).send('Missing "countryEs" POST variable in /text-gent endpoint.');
-      if (!req.body.cityEs)    return res.status(400).send('Missing "cityEs" POST variable in /text-gent endpoint.');
-      if (!req.body.thiefName) return res.status(400).send('Missing "thiefName" POST variable in /text-gent endpoint.');
-      if (!req.body.lootName)  return res.status(400).send('Missing "lootName" POST variable in /text-gent endpoint.');
+      if (!req.body.countryEs)     return res.status(400).send('Missing "countryEs" POST variable in /text-gent endpoint.');
+      if (!req.body.cityEs)        return res.status(400).send('Missing "cityEs" POST variable in /text-gent endpoint.');
+      if (!req.body.detectiveName) return res.status(400).send('Missing "detectiveName" POST variable in /text-gent endpoint.');
+      if (!req.body.thiefName)     return res.status(400).send('Missing "thiefName" POST variable in /text-gent endpoint.');
+      if (!req.body.lootName)      return res.status(400).send('Missing "lootName" POST variable in /text-gent endpoint.');
       textGenParams.countryEs = req.body.countryEs;
       textGenParams.cityEs = req.body.cityEs;
+      textGenParams.detectiveName = req.body.detectiveName;
       textGenParams.thiefName = req.body.thiefName;
       textGenParams.lootName = req.body.lootName;
       break;
@@ -78,6 +80,10 @@ app.post('/text-gen', async (req, res) => {
       textGenParams.witnessName = req.body.witnessName;
       textGenParams.witnessQuirk = req.body.witnessQuirk;
       textGenParams.clue = req.body.clue;
+      break;
+    case 'investigation':
+      if (!req.body.detectiveName) return res.status(400).send('Missing "detectiveName" POST variable in /text-gent endpoint.');
+      textGenParams.detectiveName = req.body.detectiveName;
       break;
   }
   myGameInstance.textGen(textGenParams)

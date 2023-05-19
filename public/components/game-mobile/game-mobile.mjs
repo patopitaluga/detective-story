@@ -103,7 +103,6 @@ const gameMobileComponent = {
     const mtdSendMessage = () => {
       if (refInputValue.value.length === 0) return;
       store.setAgentName(refInputValue.value);
-      store.setGameStage(stages.CHARACTER_CREATION);
       refInputValue.value = '';
       refInputEnabled.value = false;
     };
@@ -278,6 +277,21 @@ const gameMobileComponent = {
             { text: 'Recolectar evidencias',
               action: () => { store.setGameStage(stages.GAME_LOOP_CSI) },
             },
+            { text: 'Viajar',
+              action: () => { store.setGameStage(stages.GAME_LOOP_CHOOSE_DESTINATION) },
+            },
+          ];
+          break;
+        case stages.GAME_LOOP_CSI:
+          store.subtractMissionHours(3);
+          refOptions.value = [];
+          refMessageList.value = [];
+          await updateMessages('Dificultad: 10. Arrojando 🎲 D10');
+          await new Promise((p) => setTimeout(p, 2000));
+          await updateMessages(`Resultado: Tu habilidad de observación ${store.agentObservation} + 7 = ${(store.agentObservation + 7)} > 10. ¡Éxito!`);
+          await updateMessages('Has investigado la escena donde estuvo el sospechoso. ¿Cuál será el siguiente paso de tu investigación?');
+          await updateMessages(`Horas restantes: ${store.missionHours}`);
+          refOptions.value = [
             { text: 'Viajar',
               action: () => { store.setGameStage(stages.GAME_LOOP_CHOOSE_DESTINATION) },
             },
