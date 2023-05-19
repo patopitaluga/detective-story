@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
 const myGameInstance = new DetectiveStoryGameInterface({
   log: true,
   logFunction: (_) => {
-    theIOSocket.emit('message', _);
+    if (theIOSocket) theIOSocket.emit('message', _);
     console.log(_);
   },
 });
