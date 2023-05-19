@@ -100,7 +100,10 @@
     @start="store.setGameStage(stages.WELCOME)"
   >
   </intro2>
-  <div v-if="store.gameStage !== stages.INTRO && store.gameStage !== stages.INTRO2">
+  <div
+    v-if="store.gameStage !== stages.INTRO && store.gameStage !== stages.INTRO2"
+    style="height: 100%;"
+  >
     <game-nav @changenav="mtdChangeMobileNav">
     </game-nav>
     <div class="screens-container">
