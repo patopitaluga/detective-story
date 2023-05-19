@@ -91,7 +91,7 @@ app.post('/text-gen', async (req, res) => {
       res.send(text);
     })
     .catch((err) => {
-      res.status(422).send(`Couldn\'t generate text: openAI response: ${$err.response.status} ${$err.response.statusText}`);
+      res.status(422).send(`Couldn\'t generate text: openAI response: ${err.response.status} ${$err.response.statusText}`);
     });
 });
 
