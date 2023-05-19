@@ -35,7 +35,11 @@ export class DetectiveStoryGameInterface {
         if (!options.cityEs) throw new Error('[textGen] missing "cityEs" param.');
         if (!options.thiefName) throw new Error('[textGen] missing "thiefName" param.');
         if (!options.lootName) throw new Error('[textGen] missing "lootName" param.');
-        prompt = `En el estilo de ${options.authorStyle} escribe los primeros dos párrafos de un capítulo de una novela policial cómica, en primera persona, tiempo pasado. En ella, un detective describe la llegada a ${options.cityEs} ${options.countryEs}, el clima es niebla, ha llegado tras la pista del ladrón ${options.thiefName}, que ha robado ${options.lootName}.`
+
+        const posibleCityChar = ['el clima es niebla', 'hay tormenta', 'la ciudad está atestada de ratas', 'el detective siempre menciona a su ex esposa', 'el detective siempre menciona a su perro'];
+        const customCityCharacter = posibleCityChar[Math.floor(Math.random() * posibleCityChar.length)];
+
+        prompt = `En el estilo de ${options.authorStyle} escribe los primeros dos párrafos de un capítulo de una novela policial cómica, en primera persona, tiempo pasado. En ella, un detective describe la llegada a ${options.cityEs} ${options.countryEs}, ${customCityCharacter}, ha llegado tras la pista del ladrón ${options.thiefName}, que ha robado ${options.lootName}.`
         temperature = 1;
         break;
       case 'interrogation':
@@ -48,7 +52,7 @@ export class DetectiveStoryGameInterface {
     }
 
     if (!prompt) throw new Error('Prompt undefined in textGen function. Might be wrong type.')
-    if (this.log) console.log(`Text generation. Prompt: ${prompt}`);
+    if (this.log) this.logFunction(`Text generation. Prompt: ${prompt}`);
 
     /* let prevCache;
     try {
@@ -73,10 +77,10 @@ export class DetectiveStoryGameInterface {
           temperature,
         })
           .then((_) => {
-            if (this.log) console.log('-------------------');
-            if (this.log) console.log('Response:');
-            if (this.log) console.log(JSON.stringify(_.data.choices));
-            if (this.log) console.log(`-- Execution time: ${Math.floor((Date.now() - start) / 1000)} seconds`);
+            if (this.log) this.logFunction('-------------------');
+            if (this.log) this.logFunction('Response:');
+            if (this.log) this.logFunction(JSON.stringify(_.data.choices));
+            if (this.log) this.logFunction(`-- Execution time: ${Math.floor((Date.now() - start) / 1000)} seconds`);
 
             resolve(_.data.choices[0].message.content.trim());
             /* cacheJson.push({
@@ -139,7 +143,8 @@ export class DetectiveStoryGameInterface {
       }
       if (!prompt) throw new Error('[DetectiveStoryGameInterface.imageGen] Can\'t generate prompt with current params.');
 
-      if (this.log) console.log(`Image generation. Prompt: ${prompt}`);
+      if (this.log) this.logFunction('---------');
+      if (this.log) this.logFunction(`Image generation. Prompt: ${prompt}`);
       openai.createImage({
         prompt,
         n: 1, // how many images

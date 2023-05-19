@@ -16,14 +16,17 @@
       font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
+      height: 100vh;
       width: 100%;
       overflow: hidden;
     }
     .screens-container {
+      height: 100vh;
       width: 300vw;
       position: relative;
     }
     .screens-container__pan {
+      height: 100vh;
       display: flex;
       position: absolute;
       transition: left .3s ease-in-out;
@@ -86,7 +89,7 @@
     @start="store.setGameStage(stages.WELCOME)"
   >
   </intro2>
-  <div v-else>
+  <div v-if="store.gameStage !== stages.INTRO && store.gameStage !== stages.INTRO2">
     <game-nav @changenav="mtdChangeMobileNav">
     </game-nav>
     <div class="screens-container">

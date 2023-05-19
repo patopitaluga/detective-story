@@ -19,7 +19,24 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer);
 
-const myGameInstance = new DetectiveStoryGameInterface({ log: true });
+let theIOSocket;
+io.on('connection', (socket) => {
+  theIOSocket = socket;
+});
+const myGameInstance = new DetectiveStoryGameInterface({
+  log: true,
+  logFunction: (_) => {
+    theIOSocket.emit('message', _);
+    console.log(_);
+  },
+});
+
+app.use((req, res, next) => {
+  if (req.headers['x-forwarded-proto'] == 'http')
+    res.redirect('https://' + req.headers.host + req.url);
+  else
+    next();
+});
 
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
@@ -29,6 +46,10 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
   console.log.bind(req);
   res.sendFile(path.resolve('./index.html'));
+});
+app.get('/logs', (req, res) => {
+  console.log.bind(req);
+  res.sendFile(path.resolve('./logs.html'));
 });
 
 app.post('/text-gen', async (req, res) => {

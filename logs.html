@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es-es">
+<head>
+  <meta charset="utf-8">
+  <title>Detective Story - Log</title>
+
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, viewport-fit=cover">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: local('Roboto'), local('Roboto-Regular'), url('https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      font-display: block;
+      src: local('Roboto Medium'), local('Roboto-Medium'), url('https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fBBc4.woff2') format('woff2');
+    }
+
+    [v-cloak] {
+      display: none !important
+    }
+    /* Hide Vue while loading */
+  </style>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+
+<div id="app-container-element">
+  <pre v-html="log"></pre>
+</div>
+
+<script src="https://unpkg.com/vue@3.3.1"></script>
+
+<script>
+  const socket = io();
+
+  const myApp = Vue.createApp({
+    setup: function() {
+      const log = Vue.ref('');
+      socket.on('message', (message) => {
+        log.value = log.value + message + '\n';
+      });
+
+      return {
+        log,
+      };
+    },
+  });
+  myApp.mount('#app-container-element');
+</script>
+</body>
+</html>
