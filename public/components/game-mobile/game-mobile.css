@@ -6,6 +6,7 @@
   flex: 0 0 auto;
   flex-direction: column;
   height: 100vh;
+  height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   width: 100vw;

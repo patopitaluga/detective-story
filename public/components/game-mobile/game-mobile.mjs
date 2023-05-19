@@ -46,7 +46,6 @@ const gameMobileComponent = {
         type="text"
         placeholder="Mensaje"
         v-model="refInputValue"
-        v-focus
       />
     </div>
     <button>

@@ -5,6 +5,7 @@
   flex: 1 1 auto;
   justify-content: center;
   max-height: 100vh;
+  height: -webkit-fill-available;
   overflow: hidden;
   position: relative;
 }
