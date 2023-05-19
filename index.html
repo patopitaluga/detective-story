@@ -15,9 +15,9 @@
     html {
       height: 100vh;
       height: -webkit-fill-available;
-      width: 100%;
       max-width: 100vw;
       overflow: hidden;
+      width: 100%;
     }
     body {
       font-family: 'Roboto', sans-serif;
@@ -36,8 +36,7 @@
       position: relative;
     }
     .screens-container__pan {
-      height: 100vh;
-      height: -webkit-fill-available;
+      flex: 1 1 auto;
       display: flex;
       position: absolute;
       transition: left .3s ease-in-out;
@@ -102,7 +101,7 @@
   </intro2>
   <div
     v-if="store.gameStage !== stages.INTRO && store.gameStage !== stages.INTRO2"
-    style="height: 100%;"
+    style="height: 100%;display: flex; flex-direction: column; width: 100%;"
   >
     <game-nav @changenav="mtdChangeMobileNav">
     </game-nav>

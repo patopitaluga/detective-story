@@ -1,5 +1,6 @@
 .game-nav {
   display: flex;
+  flex: 0 0 auto;
   height: 56px;
   width: 100%;
 }
