@@ -20,9 +20,9 @@ export const store = Vue.reactive({
   // gameStage: stages.LOADING_ASSETS,
   gameStage: stages.INTRO,
   agentName: '',
-  skillPoints: 18,
-  agentStrenth: 6,
+  skillPoints: 24,
   agentDexterity: 6,
+  agentPersuasion: 6,
   agentAiming: 6,
   missionHours: 48,
   notepadText: '',
@@ -32,7 +32,12 @@ export const store = Vue.reactive({
   thiefName: helpers.getByChance(thievesJson).thief, // {string}
   lootName: helpers.getByChance(initialCountry.items.map((_) => ({ name: _ }))).name, // {string}
   currentCountry: {},
-  countriesArriveTexts: [],
+  countriesArriveDisplay: [
+    { countryEs:'', text: '', image: '', },
+    { countryEs:'', text: '', image: '', },
+    { countryEs:'', text: '', image: '', },
+    { countryEs:'', text: '', image: '', },
+  ],
   witnesses: helpers.arrayByChance(witnessesJson, 4),
   witnessesQuirks: helpers.arrayByChance(quirksJson, 4),
   runawayCountries: runawayCountries,
@@ -43,7 +48,7 @@ export const store = Vue.reactive({
     helpers.shuffleArray([runawayCountries[3], helpers.getByChance(countriesJson.countries, runawayCountries[3]), helpers.getByChance(countriesJson.countries, runawayCountries[3])]),
   ],
   witnessTestimonies: 0,
-  rightTravels: 0,
+  rightTravels: -1,
   lastCountry: 0,
   countQuery: 0, // to ignore a response when the next one has already been
 
@@ -54,17 +59,18 @@ export const store = Vue.reactive({
       countryEs: initialCountry.es,
       cityEs: initialCountry.cityEs,
     })
-      .then((_) => store.countriesArriveTexts.push({
+      .then((_) => store.setCountriesArriveDisplay(0, {
         countryEs: initialCountry.es,
         text: _,
       }));
     store.generateIllustration({
       type: 'initial',
       illustrationStyle,
-    }, false) // get the first image
+    }) // get the first image
       .then((initialImageUrl) => {
         const img = new Image();
         img.src = initialImageUrl;
+        store.illustrationUrl = initialImageUrl;
         store.generateIllustration({
           type: 'arrive',
           countryEn: initialCountry.en,
@@ -73,22 +79,19 @@ export const store = Vue.reactive({
           .then((_) => {
             const img = new Image();
             img.src = _;
+            store.countriesArriveDisplay[0].image = _;
           });
       });
   },
   setGameStage: (_) => {
     store.gameStage = _;
-    if (_ === stages.GAME_LOOP) {
+    if (_ === stages.GAME_LOOP_INITIAL_COUNTRY) {
       store.notepadText = 'Escribiendo…';
-      console.log(store.countriesArriveTexts)
-      console.log(store.currentCountry.es)
-      store.notepadText = store.countriesArriveTexts.find((_) => _.countryEs === store.currentCountry.es).text;
+      setTimeout(() => {
+        store.notepadText = store.countriesArriveDisplay[store.rightTravels].text;
+      }, 2500);
+      store.illustrationUrl = store.countriesArriveDisplay[store.rightTravels].image;
 
-      store.generateIllustration({
-        type: 'arrive',
-        countryEn: store.currentCountry.en,
-        illustrationStyle: illustrationStyle,
-      });
       soundEffects.plane.play();
       setTimeout(() => {
         soundEffects.plane.pause();
@@ -97,12 +100,14 @@ export const store = Vue.reactive({
       store.missionHours -= TRAVELING_TIME;
     }
     if (_ === stages.GAME_LOOP_WITNESS) {
-      store.notepadText = '';
+      store.notepadText = 'Interrogando…';
       store.queryTextGen({
         type: 'interrogation',
         witnessName: store.witnesses[store.witnessTestimonies].witness,
         witnessQuirk: store.witnessesQuirks[store.witnessTestimonies].quirk,
-        clue: store.runawayCountries[store.rightTravels].clues[0],
+        clue:
+          helpers.getByChance(store.runawayCountries[store.rightTravels].clues).clue
+        ,
       })
         .then((_) => store.notepadText = _);
       store.witnessTestimonies++;
@@ -112,20 +117,31 @@ export const store = Vue.reactive({
     store.agentName = _;
     store.setGameStage(stages.CHARACTER_CREATION);
   },
-  setStrength: (_) => {
-    store.agentStrenth = _;
-    store.skillPoints -= _;
-    store.setGameStage(stages.CHARACTER_CREATION2);
-  },
   setDexterity: (_) => {
     store.agentDexterity = _;
     store.skillPoints -= _;
+    store.setGameStage(stages.CHARACTER_CREATION2);
+  },
+  setObservation: (_) => {
+    store.Observation = _;
+    store.skillPoints -= _;
     store.setGameStage(stages.CHARACTER_CREATION3);
+  },
+  setPersuasion: (_) => {
+    store.agentPersuasion = _;
+    store.skillPoints -= _;
+    store.setGameStage(stages.CHARACTER_CREATION4);
   },
   setAiming: (_) => {
     store.agentAiming = _;
     store.skillPoints -= _;
     store.setGameStage(stages.MISSION_BRIEFING);
+  },
+  setCountriesArriveDisplay: (i, _) => {
+    store.countriesArriveDisplay[i] = {
+      ...store.countriesArriveDisplay[i],
+      ..._,
+    };
   },
 
   subtractMissionHours: (_) => {
@@ -183,7 +199,7 @@ export const store = Vue.reactive({
       })
         .then((rawResponse) => rawResponse.text())
         .then((_) => {
-          if (store.countQuery > currentQueryNumber) return;
+          // if (store.countQuery > currentQueryNumber) return;
           let prefix = '';
           if (options.type === 'interrogation') prefix = '<p>Declaración del testigo:</p>';
           resolve(prefix + _.split('\n\n').map(s => `<p>${s}</p>`).join(''));
@@ -198,15 +214,18 @@ export const store = Vue.reactive({
    */
   goToCountry: (_) => {
     store.currentCountry = _;
-    store.setGameStage(stages.GAME_LOOP);
+
+    if (store.gameStage === stages.MISSION_BRIEFING) {
+      store.rightTravels++;
+      store.setGameStage(stages.GAME_LOOP_INITIAL_COUNTRY);
+    }
   },
 
   /**
    * @param {object} _ -
-   * @param {boolean} forCache -
    * @returns {Promise<string>} - the url.
    */
-  generateIllustration: (_, forCache = false) => {
+  generateIllustration: (_) => {
     return new Promise((resolve, reject) => {
       if (typeof _?.type !== 'string') throw new Error('[generateIllustration] missing "type" param.');
       if (typeof _?.illustrationStyle !== 'string') throw new Error('[generateIllustration] missing "illustrationStyle" param.');
@@ -232,8 +251,6 @@ export const store = Vue.reactive({
       })
         .then((rawResponse) => rawResponse.json())
         .then((_) => {
-          if (forCache) return;
-          store.illustrationUrl = _.imageUrl;
           resolve(_.imageUrl);
         })
         .catch((err) => {

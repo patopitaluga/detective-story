@@ -10,6 +10,10 @@ const openai = new OpenAIApi(new Configuration({
 export class DetectiveStoryGameInterface {
   constructor(configuration) {
     this.log = configuration?.log;
+    if (configuration?.logFunction)
+      this.logFunction = configuration?.logFunction;
+    else
+      this.logFunction = (_) => console.log(_);
   }
 
   /**
@@ -38,7 +42,7 @@ export class DetectiveStoryGameInterface {
         if (!options.witnessName) throw new Error('[textGen] missing "witnessName" param.');
         if (!options.witnessQuirk) throw new Error('[textGen] missing "witnessQuirk" param.');
         if (!options.clue) throw new Error('[textGen] missing "clue" param.');
-        prompt = `En el estilo de ${options.authorStyle} escribe una respuesta a un interrogatorio en una novela policial cómica. Solo la respuesta del testigo, la pregunta está implicita. Dirá que oyó que el sospechoso haría un viaje a un país dónde se habla alemán. Una particularidad de este testigo es que ${options.witnessQuirk}.`
+        prompt = `En el estilo de ${options.authorStyle} escribe una respuesta a un interrogatorio en una novela policial cómica. Solo la respuesta del testigo, la pregunta está implicita. Dirá que oyó que el sospechoso ${options.clue}. Una particularidad de este testigo es que ${options.witnessQuirk}.`
         temperature = 0;
         break;
     }

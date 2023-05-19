@@ -9,9 +9,15 @@ if (fs.existsSync('./.env')) {
 
 import * as path from 'path';
 import express from 'express';
-const app = express();
+import { createServer } from "http";
+import { Server } from "socket.io";
 import bodyParser from 'body-parser';
 import { DetectiveStoryGameInterface } from './game-core.mjs';
+
+const app = express();
+const httpServer = createServer(app);
+
+const io = new Server(httpServer);
 
 const myGameInstance = new DetectiveStoryGameInterface({ log: true });
 
@@ -58,8 +64,7 @@ app.post('/text-gen', async (req, res) => {
       res.send(text);
     })
     .catch((err) => {
-      console.log(err);
-      res.status(422).send('Couldn\'t generate text.');
+      res.status(422).send(`Couldn\'t generate text: openAI response: ${$err.response.status} ${$err.response.statusText}`);
     });
 });
 
@@ -85,11 +90,12 @@ app.post('/image-gen', (req, res) => {
     })
     .catch((err) => {
       console.log('Error getting image from OpenAI');
+      console.log(err);
       res.status(500).send({ imageUrl: '' });
     });
 });
 
 const port = process.env.PORT || 3333;
-app.listen((port), () => {
-  console.log(`App listening on port ${port}`);
+httpServer.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });

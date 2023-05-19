@@ -9,7 +9,8 @@
       ],
       "cityEs": "New York",
       "clues": [
-        "la bandera tiene los colores rojo, blanco y azul"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores rojo, blanco y azul" },
+        { "clue": "iría a la ciudad de New York" }
       ]
     },
     { "es": "Canadá", "en": "Canada",
@@ -20,7 +21,8 @@
       ],
       "cityEs": "Toronto",
       "clues": [
-        "la bandera tiene los colores rojo y blanco"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores rojo y blanco" },
+        { "clue": "iría a la ciudad de Toronto" }
       ]
     },
     { "es": "Italia", "en": "Italy",
@@ -32,7 +34,8 @@
       ],
       "cityEs": "Roma",
       "clues": [
-        "la bandera tiene los colores verde, blanco y rojo"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores verde, blanco y rojo" },
+        { "clue": "iría a la ciudad de Roma" }
       ]
     },
     { "es": "España", "en": "Spain",
@@ -43,7 +46,9 @@
       ],
       "cityEs": "Madrid",
       "clues": [
-        "la bandera tiene los colores rojo y amarillo"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores rojo y amarillo" },
+        { "clue": "iría a la ciudad de Madrid" },
+        { "clue": "iría al País Vasco" }
       ]
     },
     { "es": "Corea del Sur", "en": "South Korea",
@@ -54,7 +59,8 @@
       ],
       "cityEs": "Seúl",
       "clues": [
-        "la bandera tiene los colores blanco, rojo y azul"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores blanco, rojo y azul" },
+        { "clue": "iría a la ciudad de Seúl" }
       ]
     },
     { "es": "Australia", "en": "Australia",
@@ -65,7 +71,8 @@
       ],
       "cityEs": "Sidney",
       "clues": [
-        "la bandera tiene los colores azul, rojo y blanco"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores azul, rojo y blanco" },
+        { "clue": "iría a la ciudad de Sidney" }
       ]
     },
     { "es": "Indonesia", "en": "Indonesia",
@@ -76,7 +83,8 @@
       ],
       "cityEs": "Yakarta",
       "clues": [
-        "la bandera tiene los colores rojo y blanco"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores rojo y blanco" },
+        { "clue": "iría a la ciudad de Yakarta" }
       ]
     },
     { "es": "Argentina", "en": "Argentina",
@@ -88,7 +96,9 @@
       ],
       "cityEs": "Buenos Aires",
       "clues": [
-        "la bandera tiene los colores celeste y blanco"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores celeste y blanco" },
+        { "clue": "iría a la ciudad de Buenos Aires" },
+        { "clue": "iría a la ciudad de Mar del Plata" }
       ]
     },
     { "es": "Turquía", "en": "Turkey",
@@ -99,7 +109,8 @@
       ],
       "cityEs": "Estambul",
       "clues": [
-        "la bandera tiene los colores rojo y blanco"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores rojo y blanco" },
+        { "clue": "iría a la ciudad de Estambul" }
       ]
     },
     { "es": "Sudáfrica", "en": "South Africa",
@@ -110,7 +121,8 @@
       ],
       "cityEs": "Johannesburgo",
       "clues": [
-        "la bandera tiene los colores rojo, azul, verde, negro, amarillo y blanco"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores rojo, azul, verde, negro, amarillo y blanco" },
+        { "clue": "iría a la ciudad de Johannesburgo" }
       ]
     },
     { "es": "Egipto", "en": "Egypt",
@@ -121,7 +133,8 @@
       ],
       "cityEs": "El Cairo",
       "clues": [
-        "la bandera tiene los colores rojo, blanco y negro"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores rojo, blanco y negro" },
+        { "clue": "iría a la ciudad de El Cairo" }
       ]
     },
     { "es": "Arabia Saudita", "en": "Saudi Arabia",
@@ -132,7 +145,8 @@
       ],
       "cityEs": "Ar-Riyadh",
       "clues": [
-        "la bandera tiene los colores verde y blanco"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores verde y blanco" },
+        { "clue": "iría a la ciudad de Ar-Riyadh" }
       ]
     },
     { "es": "Irán", "en": "Iran",
@@ -143,7 +157,8 @@
       ],
       "cityEs": "Teheran",
       "clues": [
-        "la bandera tiene los colores rojo, blanco y verde"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores rojo, blanco y verde" },
+        { "clue": "iría a la ciudad de Teheran" }
       ]
     },
     { "es": "Nigeria", "en": "Nigeria",
@@ -154,7 +169,8 @@
       ],
       "cityEs": "Lagos",
       "clues": [
-        "la bandera tiene los colores verde y blanco"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores verde y blanco" },
+        { "clue": "iría a la ciudad de Lagos" }
       ]
     },
     { "es": "Países Bajos", "en": "Netherlands",
@@ -164,7 +180,8 @@
       ],
       "cityEs": "Amsterdam",
       "clues": [
-        "la bandera tiene los colores rojo, blanco y azul"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores rojo, blanco y azul" },
+        { "clue": "iría a la ciudad de Amsterdam" }
       ]
     },
     { "es": "China", "en": "China",
@@ -173,7 +190,8 @@
       ],
       "cityEs": "Beijing",
       "clues": [
-        "la bandera tiene los colores rojo y amarillo"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores rojo y amarillo" },
+        { "clue": "iría a la ciudad de Beijing" }
       ]
     },
     { "es": "India", "en": "India",
@@ -182,7 +200,8 @@
       ],
       "cityEs": "Delhi",
       "clues": [
-        "la bandera tiene los colores naranja, blanco y verde"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores naranja, blanco y verde" },
+        { "clue": "iría a la ciudad de Delhi" }
       ]
     },
     { "es": "Rusia", "en": "Russia",
@@ -192,7 +211,8 @@
       ],
       "cityEs": "Moscú",
       "clues": [
-        "la bandera tiene los colores blanco, azul y rojo"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores blanco, azul y rojo" },
+        { "clue": "iría a la ciudad de Moscú" }
       ]
     },
     { "es": "Japón", "en": "Japan",
@@ -202,7 +222,8 @@
       ],
       "cityEs": "Tokio",
       "clues": [
-        "la bandera tiene el color blanco con un círculo rojo en el centro"
+        { "clue": "haría un viaje a un país cuya bandera tiene el color blanco con un círculo rojo en el centro" },
+        { "clue": "iría a la ciudad de Tokio" }
       ]
     },
     { "es": "Alemania", "en": "Germany",
@@ -212,7 +233,8 @@
       ],
       "cityEs": "Berlín",
       "clues": [
-        "la bandera tiene los colores negro, rojo y dorado"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores negro, rojo y dorado" },
+        { "clue": "iría a la ciudad de Berlín" }
       ]
     },
     { "es": "Reino Unido", "en": "United Kingdom",
@@ -221,7 +243,9 @@
       ],
       "cityEs": "Londres",
       "clues": [
-        "la bandera tiene los colores rojo, blanco y azul"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores rojo, blanco y azul" },
+        { "clue": "iría a la ciudad de Londres" },
+        { "clue": "iría a la ciudad de Manchester" }
       ]
     },
     { "es": "Francia", "en": "France",
@@ -234,7 +258,8 @@
       ],
       "cityEs": "París",
       "clues": [
-        "la bandera tiene los colores azul, blanco y rojo"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores azul, blanco y rojo" },
+        { "clue": "iría a la ciudad de París" }
       ]
     },
     { "es": "Brasil", "en": "Brazil",
@@ -245,7 +270,8 @@
       ],
       "cityEs": "San Pablo",
       "clues": [
-        "la bandera tiene los colores verde, amarillo, azul y blanco"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores verde, amarillo, azul y blanco" },
+        { "clue": "iría a la ciudad de San Pablo" }
       ]
     },
     { "es": "México", "en": "Mexico",
@@ -257,7 +283,9 @@
       ],
       "cityEs": "México DF",
       "clues": [
-        "la bandera tiene los colores verde, blanco y rojo"
+        { "clue": "haría un viaje a un país cuya bandera tiene los colores verde, blanco y rojo" },
+        { "clue": "iría a la ciudad de Tijuana" },
+        { "clue": "viajaría a un país donde pueda comer tacos" }
       ]
     }
   ]

@@ -120,21 +120,7 @@ const gameMobileComponent = {
           refInputEnabled.value = true;
           break;
         case stages.CHARACTER_CREATION:
-          await updateMessages(`Agente ${store.agentName}, para completar su ficha psicotécnica debe responder unas preguntas ¿Cómo describiría su fuerza física? Puntos restantes: ${store.skillPoints}`);
-          refOptions.value = [
-            { text: 'Soy muy fuerte (8)',
-              action: () => { refOptions.value = []; store.setStrength(8); },
-            },
-            { text: 'Tengo fuerza (6)',
-              action: () => { refOptions.value = []; store.setStrength(6); },
-            },
-            { text: 'Soy algo débil (4)',
-              action: () => { refOptions.value = []; store.setStrength(4); },
-            },
-          ];
-          break;
-        case stages.CHARACTER_CREATION2:
-          await updateMessages(`¿Cómo describiría su destreza? Puntos restantes: ${store.skillPoints}`);
+          await updateMessages(`Agente ${store.agentName}, para completar su ficha psicotécnica debe responder unas preguntas ¿Cómo describiría su destreza física? Puntos restantes: ${store.skillPoints}`);
           refOptions.value = [
             { text: 'Soy un atleta (8)',
               action: () => {
@@ -162,7 +148,65 @@ const gameMobileComponent = {
             },
           ];
           break;
+        case stages.CHARACTER_CREATION2:
+          await updateMessages(`¿Qué tan bueno es observando? Puntos restantes: ${store.skillPoints}`);
+          refOptions.value = [
+            { text: 'Nada se me escapa (8)',
+              action: () => {
+                if (store.skillPoints < 8) return;
+                refOptions.value = [];
+                store.setObservation(8);
+              },
+              disabled: store.skillPoints < 8,
+            },
+            { text: 'Me fijo en algunos detalles (6)',
+              action: () => {
+                if (store.skillPoints < 6) return;
+                refOptions.value = [];
+                store.setObservation(6);
+              },
+              disabled: store.skillPoints < 6,
+            },
+            { text: 'Soy distraído (4)',
+              action: () => {
+                if (store.skillPoints < 4) return;
+                refOptions.value = [];
+                store.setObservation(4);
+              },
+              disabled: store.skillPoints < 4,
+            },
+          ];
+          break;
         case stages.CHARACTER_CREATION3:
+          await updateMessages(`¿Eres persuasivo? Puntos restantes: ${store.skillPoints}`);
+          refOptions.value = [
+            { text: 'Hago llorar los maleantes (8)',
+              action: () => {
+                if (store.skillPoints < 8) return;
+                refOptions.value = [];
+                store.setPersuasion(8);
+              },
+              disabled: store.skillPoints < 8,
+            },
+            { text: 'Puedo convencer a algunos (6)',
+              action: () => {
+                if (store.skillPoints < 6) return;
+                refOptions.value = [];
+                store.setPersuasion(6);
+              },
+              disabled: store.skillPoints < 6,
+            },
+            { text: 'Me ignora hasta mi perro (4)',
+              action: () => {
+                if (store.skillPoints < 4) return;
+                refOptions.value = [];
+                store.setPersuasion(4);
+              },
+              disabled: store.skillPoints < 4,
+            },
+          ];
+          break;
+        case stages.CHARACTER_CREATION4:
           await updateMessages(`¿Cómo es su puntería? Puntos restantes: ${store.skillPoints}`);
           refOptions.value = [
             { text: 'Puedo acertar a una mosca (8)',
@@ -206,10 +250,10 @@ const gameMobileComponent = {
             },
           ];
           break;
-        case stages.GAME_LOOP:
+        case stages.GAME_LOOP_INITIAL_COUNTRY:
           await new Promise((p) => setTimeout(p, 2000));
           await updateMessages(`Horas restantes: ${store.missionHours}`);
-          await updateMessages(`Has arribado a ${store.currentCountry.cityEs}. ¿Cuál será el siguiente paso de tu investigación?`);
+          await updateMessages(`Has llegado a ${store.currentCountry.cityEs}. ¿Cuál será el siguiente paso de tu investigación?`);
           refOptions.value = [
             { text: 'Interrogar a un testigo',
               action: () => { store.setGameStage(stages.GAME_LOOP_WITNESS) },
@@ -223,11 +267,14 @@ const gameMobileComponent = {
           ];
           break;
         case stages.GAME_LOOP_WITNESS:
-          await new Promise((p) => setTimeout(p, 2000));
           store.subtractMissionHours(3);
           refOptions.value = [];
-          await updateMessages(`Horas restantes: ${store.missionHours}`);
+          refMessageList.value = [];
+          await updateMessages('Dificultad: 10. Arrojando 🎲 D10');
+          await new Promise((p) => setTimeout(p, 2000));
+          await updateMessages(`Resultado: Tu habilidad persuasiva ${store.agentPersuasion} + 7 = ${(store.agentPersuasion + 7)} > 10. ¡Éxito!`);
           await updateMessages('Has interrogado al testigo. ¿Cuál será el siguiente paso de tu investigación?');
+          await updateMessages(`Horas restantes: ${store.missionHours}`);
           refOptions.value = [
             { text: 'Recolectar evidencias',
               action: () => { store.setGameStage(stages.GAME_LOOP_CSI) },
