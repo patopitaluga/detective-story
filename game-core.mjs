@@ -33,14 +33,14 @@ export class DetectiveStoryGameInterface {
       case 'arrive':
         if (!options.countryEs) throw new Error('[textGen] missing "countryEs" param.');
         if (!options.cityEs) throw new Error('[textGen] missing "cityEs" param.');
-        if (!options.detectiveName) throw new Error('[textGen] missing "detectiveName" param.');
+        // if (!options.detectiveName) throw new Error('[textGen] missing "detectiveName" param.');
         if (!options.thiefName) throw new Error('[textGen] missing "thiefName" param.');
         if (!options.lootName) throw new Error('[textGen] missing "lootName" param.');
 
         const posibleCityChar = ['el clima es niebla', 'hay tormenta', 'la ciudad está atestada de ratas', 'el detective siempre menciona a su ex esposa', 'el detective siempre menciona a su perro'];
         const customCityCharacter = posibleCityChar[Math.floor(Math.random() * posibleCityChar.length)];
 
-        prompt = `En el estilo de ${options.authorStyle} escribe los primeros dos párrafos de un capítulo de una novela policial cómica, en primera persona, tiempo pasado. En ella, un detective llamado ${options.detectiveName} llega a ${options.cityEs} ${options.countryEs}, ${customCityCharacter}, ha llegado tras la pista del ladrón ${options.thiefName}, que ha robado ${options.lootName}.`
+        prompt = `En el estilo de ${options.authorStyle} escribe los primeros dos párrafos de un capítulo de una novela policial cómica, en primera persona, tiempo pasado. En ella, un detective llega a ${options.cityEs} ${options.countryEs}, ${customCityCharacter}, ha llegado tras la pista del ladrón ${options.thiefName}, que ha robado ${options.lootName}.`
         temperature = 0.7;
         break;
       case 'interrogation':
@@ -51,8 +51,8 @@ export class DetectiveStoryGameInterface {
         temperature = 0.7;
         break;
       case 'investigation':
-        if (!options.detectiveName) throw new Error('[textGen] missing "detectiveName" param.');
-        prompt = `En el estilo de ${options.authorStyle} escribe los primeros dos párrafos de un capítulo de una novela policial cómica, en primera persona, tiempo pasado. El detective se llama ${options.detectiveName}. En este capítulo debes contar que el detective ha llegado a la habitación de hotel donde estuvo el sospechoso y ha encontrado una colilla de cigarrillo. Con ella tiene la pista de que el delincuente es fumador y puede pedir un análisis de adn para comprobar si hay residuos de saliva en la colilla.`
+        // if (!options.detectiveName) throw new Error('[textGen] missing "detectiveName" param.');
+        prompt = `En el estilo de ${options.authorStyle} escribe los primeros dos párrafos de un capítulo de una novela policial cómica, en primera persona, tiempo pasado. En este capítulo debes contar que el detective ha llegado a la habitación de hotel donde estuvo el sospechoso y ha encontrado una colilla de cigarrillo. Con ella tiene la pista de que el delincuente es fumador y puede pedir un análisis de adn para comprobar si hay residuos de saliva en la colilla.`
         temperature = 0.7;
         break;
     }

@@ -83,7 +83,7 @@ export const store = Vue.reactive({
         type: 'arrive',
         countryEs: initialCountry.es,
         cityEs: initialCountry.cityEs,
-        detectiveName: store.agentName,
+        // detectiveName: store.agentName,
       })
         .then((_) => store.setCountriesArriveDisplay(0, {
           countryEs: initialCountry.es,
@@ -121,7 +121,7 @@ export const store = Vue.reactive({
       store.notepadText = 'Investigando…';
       store.queryTextGen({
         type: 'investigation',
-        detectiveName: store.agentName,
+        // detectiveName: store.agentName,
       })
         .then((_) => store.notepadText = _);
       store.witnessTestimonies++;
@@ -188,10 +188,10 @@ export const store = Vue.reactive({
       switch (options.type) {
         case 'arrive':
           if (typeof options.countryEs === 'undefined' || !options.countryEs) throw new Error('[queryTextGen] missing "options.countryEs" param.');
-          if (typeof options.detectiveName === 'undefined' || !options.detectiveName) throw new Error('[queryTextGen] missing "options.detectiveName" param.');
+          // if (typeof options.detectiveName === 'undefined' || !options.detectiveName) throw new Error('[queryTextGen] missing "options.detectiveName" param.');
           queryParams.countryEs = options.countryEs;
           queryParams.cityEs = options.cityEs;
-          queryParams.detectiveName = options.detectiveName;
+          // queryParams.detectiveName = options.detectiveName;
           queryParams.thiefName = store.thiefName;
           queryParams.lootName = store.lootName;
           break;
@@ -204,7 +204,8 @@ export const store = Vue.reactive({
           queryParams.clue = options.clue;
           break;
         case 'investigation':
-          if (typeof options.detectiveName === 'undefined' || !options.detectiveName) throw new Error('[queryTextGen] missing "options.detectiveName" param.');
+          // if (typeof options.detectiveName === 'undefined' || !options.detectiveName) throw new Error('[queryTextGen] missing "options.detectiveName" param.');
+          // queryParams.detectiveName = options.detectiveName;
           break;
       }
 
