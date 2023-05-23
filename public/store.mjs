@@ -1,10 +1,11 @@
-import stages from './enum_stages.json' assert { type: 'json' };
-import authorsJson from './enum_writers.json' assert { type: 'json' };
-import countriesJson from './enum_countries.json' assert { type: 'json' };
-import thievesJson from './enum_thieves.json' assert { type: 'json' };
-import witnessesJson from './enum_witnesses.json' assert { type: 'json' };
-import quirksJson from './enum_quirks.json' assert { type: 'json' };
-import illustrationStyleJson from './enum_illustration_style.json' assert { type: 'json' };
+const stages = await fetch('./enum_stages.json').then((_) => _.json());
+
+const authorsJson = await fetch('./enum_writers.json').then((_) => _.json());
+const countriesJson = await fetch('./enum_countries.json').then((_) => _.json());
+const thievesJson = await fetch('./enum_thieves.json').then((_) => _.json());
+const witnessesJson = await fetch('./enum_witnesses.json').then((_) => _.json());
+const quirksJson = await fetch('./enum_quirks.json').then((_) => _.json());
+const illustrationStyleJson = await fetch('./enum_illustration_style.json').then((_) => _.json());
 
 const TRAVELING_TIME = 6;
 

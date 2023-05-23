@@ -1,4 +1,5 @@
-import stages from '../../enum_stages.json' assert { type: 'json' };
+const stages = await fetch('../../enum_stages.json').then((_) => _.json());
+
 import { store } from '../../store.mjs'
 
 const gameMobileComponent = {
