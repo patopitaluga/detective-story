@@ -14,6 +14,7 @@ const sendMessage = async(_chatId, _text) => {
     .catch((_err) => {
       console.log('Error sending message ' + _err.response.status + ' ' + _err.response.data);
     });
+  //
 };
 
 export const telegramWebhookController = (req, res) => {
