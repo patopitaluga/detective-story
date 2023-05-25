@@ -9,7 +9,7 @@ const sendMessage = async(_chatId, _text) => {
   if (_chatId === 'localtesting') return console.log(_text); // testing or using cli
 
   const url = `https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage?chat_id=${_chatId}&text=${_text}&parse_mode=Markdown`;
-  // console.log(url);
+  console.log(url);
   return fetch(url)
     .catch((_err) => {
       console.log('Error sending message ' + _err.response.status + ' ' + _err.response.data);

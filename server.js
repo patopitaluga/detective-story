@@ -127,5 +127,5 @@ app.post('/tg', telegramWebhookController);
 
 const port = process.env.PORT || 3333;
 httpServer.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  console.log(`V1. Listening on port ${port}`);
 });
