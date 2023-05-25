@@ -13,6 +13,7 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import bodyParser from 'body-parser';
 import { DetectiveStoryGameInterface } from './game-core.mjs';
+import { telegramWebhookController } from './controllers/ctrl--tg-webhook.mjs';
 
 const app = express();
 const httpServer = createServer(app);
@@ -121,6 +122,8 @@ app.post('/image-gen', (req, res) => {
       res.status(500).send({ imageUrl: '' });
     });
 });
+
+app.post('/tg', telegramWebhookController);
 
 const port = process.env.PORT || 3333;
 httpServer.listen(port, () => {
