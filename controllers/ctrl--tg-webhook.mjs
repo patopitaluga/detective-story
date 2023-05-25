@@ -17,8 +17,8 @@ const sendMessage = async(_chatId, _text) => {
 };
 
 export const telegramWebhookController = async (req, res) => {
-  if (body.message.text === '/start') {
-    await sendMessage(body.message.chat.id, 'Starting new Detective Story');
+  if (req.body.message.text === '/start') {
+    await sendMessage(req.body.message.chat.id, 'Starting new Detective Story');
     return res.send('OK');
   }
 
