@@ -15,6 +15,6 @@ const sendMessage = async(_chatId, _text) => {
 };
 
 export const telegramWebhookController = (req, res) => {
-  console.log('sendMessage');
+  console.log(req.body.message.chat.id, 'sendMessage');
   sendMessage('Hey');
 };
